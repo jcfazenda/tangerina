@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from './sidebar/sidebar.component';  // Importa o SidebarComponent
-import { HeaderComponent } from './header/header.component';  // Importa o SidebarComponent
-import { RouterModule } from '@angular/router';  // Importa o RouterModule
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';  
 
 @Component({
   selector: 'app-root',
-  standalone: true,  // Tornando o AppComponent standalone
-  imports: [SidebarComponent, HeaderComponent, RouterModule],  // Importa SidebarComponent aqui
+  standalone: true,  
+  imports: [SidebarComponent, HeaderComponent, RouterModule],  // Ajuste
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-app';
+  title = 'Angular Standalone Example';
 }

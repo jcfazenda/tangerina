@@ -51,9 +51,9 @@
 			  "src/vendor/bootstrap-select/dist/js/bootstrap-select.min.js", 
 			  "src/js/custom.js", 
 			  "src/js/deznav-init.js", 
-			  "src/vendor/chart.js/Chart.bundle.min.js",
-			  "src/vendor/apexchart/apexchart.js",
-			  "src/js/dashboard/dashboard-1.js",
+			   
+			   
+			   
 			  "src/vendor/draggable/draggable.js",
 			  "src/vendor/tagify/dist/tagify.js",
 			  "src/vendor/datatables/js/jquery.dataTables.min.js",

@@ -1,33 +1,14 @@
-/* src/app/sidebar/sidebar.component.css */
-.sidebar.closed {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+a {
+    cursor: pointer; /* Garante que o cursor muda para "pointer" */
+    text-decoration: none; /* Remove sublinhado do link */
+    color: inherit; /* Usa a cor do pai, ou ajuste conforme necessário */
   }
-
-  .content {
-    margin-left: 0;
+  
+  a:hover {
+    color: #007bff; /* Altere a cor do texto ao passar o mouse */
   }
-
-  .sidebar-toggle {
-    display: block;
+  
+  a.router-link-active {
+    font-weight: bold; /* Destaca a rota ativa */
   }
-}
-
-.sidebar-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-}
+  
