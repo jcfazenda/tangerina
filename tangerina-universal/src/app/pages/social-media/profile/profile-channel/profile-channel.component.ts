@@ -43,9 +43,10 @@ interface TypePersona {
 })
 export class ProfileChannelComponent {
 
-  @Input() title: string;
-  @Input() description: string;
-  @Input() item: TypePersona[];  
+  @Input() title: string = '';
+  @Input() description = '';
+  @Input() item?: TypePersona[];
+
 
   typesPersona: any = TypesPersona; 
   typePersona: any = TypesPersona; 
@@ -54,7 +55,7 @@ export class ProfileChannelComponent {
   readonly dialog = inject(MatDialog); 
 
   /* variables */ 
-  currentSection: string;
+  currentSection: string = '';
   idProject = 0;
   idTypeProject = 0;  
   user: any;

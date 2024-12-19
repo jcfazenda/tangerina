@@ -3,7 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ProfileChannelComponent } from './profile-channel/profile-channel.component';
 import { ImagesService } from './../../../api/services/images.service';
 import { PersonaService } from './../../../api/services/persona.service';
+import { CustomHttpClientModule } from './../../../api/custom-http-client.module';
 
+
+interface Image {
+    id_thumbnail: string;
+    type_image: string;
+    thumbnail: string;
+}
 interface TypePersona { 
   id: number;
   icon: string; 
@@ -19,7 +26,7 @@ interface TypePersona {
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, ProfileChannelComponent], 
+  imports: [CommonModule, ProfileChannelComponent, CustomHttpClientModule], 
   standalone: true,  
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
@@ -126,51 +133,49 @@ export class ProfileComponent {
   }
   
   setImage(result: any) {  
-    
-      // Busca todas as imagens relacionadas ao grupo de uma só vez
-      this._image.getByThumbnail(result.id).subscribe( images => {   
-          
-          images.forEach(_image => {     
-
-              if (_image.id_thumbnail === String(result.id)) {   
-
-                  if (_image.type_image === 'thumb') { 
-                      this._image.setUrl(_image.thumbnail).then((url) => { 
-                          this.typePersona.thumb = url;  
-                      }).catch(error => { this.typePersona.thumb = 'assets/images/produtos/no-thumbnail.jpg'; });
-                  } 
-
-                  if (_image.type_image === 'image_lateral') { 
-                      this._image.setUrl(_image.thumbnail).then((url) => { 
-                          this.typePersona.image_lateral = url;  
-                      }).catch(error => { this.typePersona.image_lateral = 'assets/images/produtos/no-thumbnail.jpg'; });
-                  } 
-
-                  if (_image.type_image === 'image_lateral_direita') { 
-                      this._image.setUrl(_image.thumbnail).then((url) => { 
-                          this.typePersona.image_lateral_direita = url;  
-                      }).catch(error => { this.typePersona.image_lateral_direita = 'assets/images/produtos/no-thumbnail.jpg'; });
-                  } 
-                  if (_image.type_image === 'avatar') { 
-                      this._image.setUrl(_image.thumbnail).then((url) => { 
-                          this.typePersona.avatar = url;  
-                      }).catch(error => { this.typePersona.avatar = 'assets/images/produtos/no-thumbnail.jpg'; });
-                  }
-
-                  return; 
-              }
-
-          });
-
-          },
-          error => { 
-              this.typePersona.thumb = 'assets/images/produtos/no-thumbnail.jpg'; 
-              this.typePersona.image_lateral = 'assets/images/produtos/no-thumbnail.jpg'; 
-              this.typePersona.image_lateral_direita = 'assets/images/produtos/no-thumbnail.jpg'; 
-          }
-
-      ); 
-  }
+    this._image.getByThumbnail(result.id).subscribe(
+        (images: Image[]) => {   
+            images.forEach((_image: Image) => {     
+                if (_image.id_thumbnail === String(result.id)) {   
+                    if (_image.type_image === 'thumb') { 
+                        this._image.setUrl(_image.thumbnail).then((url) => { 
+                            this.typePersona.thumb = url;  
+                        }).catch(error => { 
+                            this.typePersona.thumb = 'assets/images/produtos/no-thumbnail.jpg'; 
+                        });
+                    } 
+                    if (_image.type_image === 'image_lateral') { 
+                        this._image.setUrl(_image.thumbnail).then((url) => { 
+                            this.typePersona.image_lateral = url;  
+                        }).catch(error => { 
+                            this.typePersona.image_lateral = 'assets/images/produtos/no-thumbnail.jpg'; 
+                        });
+                    } 
+                    if (_image.type_image === 'image_lateral_direita') { 
+                        this._image.setUrl(_image.thumbnail).then((url) => { 
+                            this.typePersona.image_lateral_direita = url;  
+                        }).catch(error => { 
+                            this.typePersona.image_lateral_direita = 'assets/images/produtos/no-thumbnail.jpg'; 
+                        });
+                    } 
+                    if (_image.type_image === 'avatar') { 
+                        this._image.setUrl(_image.thumbnail).then((url) => { 
+                            this.typePersona.avatar = url;  
+                        }).catch(error => { 
+                            this.typePersona.avatar = 'assets/images/produtos/no-thumbnail.jpg'; 
+                        });
+                    }
+                    return; 
+                }
+            });
+        },
+        error => { 
+            this.typePersona.thumb = 'assets/images/produtos/no-thumbnail.jpg'; 
+            this.typePersona.image_lateral = 'assets/images/produtos/no-thumbnail.jpg'; 
+            this.typePersona.image_lateral_direita = 'assets/images/produtos/no-thumbnail.jpg'; 
+        }
+    ); 
+}
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
