@@ -1,0 +1,33 @@
+/* src/app/sidebar/sidebar.component.css */
+.sidebar.closed {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
